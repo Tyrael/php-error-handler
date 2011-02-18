@@ -1,0 +1,7 @@
+a little php file (src/php-error-handler.php) which can provide you an easy way to handle errors (even non recoverable errors like E_ERROR, E_PARSE, E_CORE_ERROR, E_COMPILE_ERROR)
+
+it wraps the error to an ErrorException instance and throws the exception(for catchable errors) or calls the default exception handler (for fatal errors)
+ 
+BEWARE: you cannot continue the execution of your script on such errors, but with this script, you can gracefully terminate
+
+see the src/demo.php for examples

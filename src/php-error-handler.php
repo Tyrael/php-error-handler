@@ -16,6 +16,10 @@ register_shutdown_function(function(){
 
 $old_error_handler = set_error_handler(
         function ($errno, $errstr, $errfile, $errline ) {
+		if (!(error_reporting() & $errno)) {
+			return;
+		}
+
                 throw new ErrorException($errstr, 0, $errno, $errfile, $errline);
         }
 );
