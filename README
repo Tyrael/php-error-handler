@@ -5,3 +5,5 @@ it wraps the error to an ErrorException instance and throws the exception(for ca
 BEWARE: you cannot continue the execution of your script on such errors, but with this script, you can gracefully terminate
 
 see the src/demo.php for examples
+
+Requirements: php 5.3
