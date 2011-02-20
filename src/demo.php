@@ -1,14 +1,28 @@
 <?php
 ini_set('display_errors', 'Off');
-include 'php-error-handler.php';
-set_exception_handler(
-        function (Exception $e) {
-                echo "exception_handler:\n";
-                var_dump($e);
-        }
-);
+error_reporting(-1);
+header("Content-Type: text/plain");
 
-// comment out one of the lines below to test the errors
+require dirname(__FILE__).DIRECTORY_SEPARATOR.'php-error-handler.php';
+
+function my_exception_handler(Exception $e){
+	var_dump('Exception handler:');
+	var_dump($e);
+}
+
+set_exception_handler('my_exception_handler');
+
+$PHPErrorHandler = new PHP_Error_Handler(NULL, true);
+
+try{
+	echo $foo;
+}
+catch(Exception $e) {
+	echo "Exception was thrown\n";
+	var_dump($e);
+}
+
+// comment out one of the lines below to test the fatal errors
 
 //include 'e_error.php';
 //include 'e_parse.php';
