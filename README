@@ -1,9 +1,16 @@
-a little php file (src/php-error-handler.php) which can provide you an easy way to handle errors (even non recoverable errors like E_ERROR, E_PARSE, E_CORE_ERROR, E_COMPILE_ERROR)
-
+a little php class which can provide you an easy way to handle errors (even non recoverable errors like E_ERROR, E_PARSE, E_CORE_ERROR, E_COMPILE_ERROR)
 it wraps the error to an ErrorException instance and throws the exception(for catchable errors) or calls the default exception handler (for fatal errors)
+
+if you create an instance from PHP_Error_Handler without any arguments, it will call the global error/exception handler method, if it's available.
+
+the first argument can be a callable variable, if set, that will be called instead of the global error/exception handler.
+
+the second argument will be interpreted as a boolean value: if is set to true, the errors will be converted to ErrorException and passed to the exception handler (either to the global, or the one passed as argument).
+
+the third argument will be interpreted as a boolean value: if is set to true, then the script will overwrite the global error handler if is set. (only required if $errorsToException is set to true and another error handler was set with set_error_handler)
  
 BEWARE: you cannot continue the execution of your script on such errors, but with this script, you can gracefully terminate
 
 see the src/demo.php for examples
 
-Requirements: php 5.3
+Requirements: php 5.2.6
