@@ -13,4 +13,4 @@ BEWARE: you cannot continue the execution of your script on such errors, but wit
 
 see the src/demo.php for examples
 
-Requirements: php 5.2.6
+Requirements: php >= 5.2.6
