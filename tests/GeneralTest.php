@@ -1,5 +1,5 @@
 <?php
-require_once 'src/php-error-handler.php';
+require_once 'src/lib/php-error-handler.php';
 
 class GeneralTest extends PHPUnit_Framework_TestCase
 {

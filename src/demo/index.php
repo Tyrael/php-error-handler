@@ -3,7 +3,7 @@ ini_set('display_errors', 'Off');
 error_reporting(-1);
 header("Content-Type: text/plain");
 
-require dirname(__FILE__).DIRECTORY_SEPARATOR.'php-error-handler.php';
+require dirname(__FILE__).DIRECTORY_SEPARATOR.'../lib/php-error-handler.php';
 
 function my_exception_handler(Exception $e){
 	var_dump('Exception handler:');
@@ -24,7 +24,7 @@ catch(Exception $e) {
 
 // comment out one of the lines below to test the fatal errors
 
-//include 'e_error.php';
-//include 'e_parse.php';
-//include 'e_core_error.php';
-//include 'e_compile_error.php';
+//include 'errors/e_error.php';
+//include 'errors/e_parse.php';
+//include 'errors/e_core_error.php';
+//include 'errors/e_compile_error.php';
