@@ -15,7 +15,14 @@
 
  <!-- Run unit tests and generate junit.xml and clover.xml -->
  <target name="phpunit">
-  <exec executable="phpunit" failonerror="true"/>
+  <condition property="phpunit.bin" value="phpunit.bat">
+     <os family="windows"/>
+  </condition>
+  <condition property="phpunit.bin" value="phpunit">
+     <os family="unix"/>
+  </condition>
+
+  <exec executable="${phpunit.bin}" failonerror="true"/>
  </target>
 
  <!-- Run the pdepend, phpmd, phpcpd, phpcs, phpdoc and phploc tasks
@@ -35,7 +42,14 @@
 
  <!-- Generate jdepend.xml and software metrics charts -->
  <target name="pdepend">
-  <exec executable="pdepend">
+  <condition property="pdepend.bin" value="pdepend.bat">
+     <os family="windows"/>
+  </condition>
+  <condition property="pdepend.bin" value="pdepend">
+     <os family="unix"/>
+  </condition>
+
+  <exec executable="${pdepend.bin}">
    <arg line="--jdepend-xml=${basedir}/build/logs/jdepend.xml
               --jdepend-chart=${basedir}/build/pdepend/dependencies.svg
               --overview-pyramid=${basedir}/build/pdepend/overview-pyramid.svg
@@ -45,7 +59,14 @@
 
  <!-- Generate pmd.xml -->
  <target name="phpmd">
-  <exec executable="phpmd">
+  <condition property="phpmd.bin" value="phpmd.bat">
+     <os family="windows"/>
+  </condition>
+  <condition property="phpmd.bin" value="phpmd">
+     <os family="unix"/>
+  </condition>
+
+  <exec executable="${phpmd.bin}">
    <arg line="${source}
               xml
               codesize,design,naming,unusedcode
@@ -55,7 +76,14 @@
 
  <!-- Generate pmd-cpd.xml -->
  <target name="phpcpd">
-  <exec executable="phpcpd">
+  <condition property="phpcpd.bin" value="phpcpd.bat">
+     <os family="windows"/>
+  </condition>
+  <condition property="phpcpd.bin" value="phpcpd">
+     <os family="unix"/>
+  </condition>
+
+  <exec executable="${phpcpd.bin}">
    <arg line="--log-pmd ${basedir}/build/logs/pmd-cpd.xml
               ${source}" />
   </exec>
@@ -63,7 +91,14 @@
 
  <!-- Generate phploc.csv -->
  <target name="phploc">
-  <exec executable="phploc">
+  <condition property="phploc.bin" value="phploc.bat">
+     <os family="windows"/>
+  </condition>
+  <condition property="phploc.bin" value="phploc">
+     <os family="unix"/>
+  </condition>
+
+  <exec executable="${phploc.bin}">
    <arg line="--log-csv ${basedir}/build/logs/phploc.csv
               ${source}" />
   </exec>
@@ -71,7 +106,14 @@
 
  <!-- Generate checkstyle.xml -->
  <target name="phpcs">
-  <exec executable="phpcs">
+  <condition property="phpcs.bin" value="phpcs.bat">
+     <os family="windows"/>
+  </condition>
+  <condition property="phpcs.bin" value="phpcs">
+     <os family="unix"/>
+  </condition>
+
+  <exec executable="${phpcs.bin}">
    <arg line="--report=checkstyle
               --report-file=${basedir}/build/logs/checkstyle.xml
               --standard=PEAR
@@ -81,14 +123,28 @@
 
  <!-- Generate API documentation -->
  <target name="phpdoc">
-  <exec executable="phpdoc">
+  <condition property="phpdoc.bin" value="phpdoc.bat">
+     <os family="windows"/>
+  </condition>
+  <condition property="phpdoc.bin" value="phpdoc">
+     <os family="unix"/>
+  </condition>
+
+  <exec executable="${phpdoc.bin}">
    <arg line="--directory ${source}
                  --target    ${basedir}/build/api" />
   </exec>
  </target>
 
  <target name="phpcb">
-  <exec executable="phpcb">
+  <condition property="phpcb.bin" value="phpcb.bat">
+     <os family="windows"/>
+  </condition>
+  <condition property="phpcb.bin" value="phpcb">
+     <os family="unix"/>
+  </condition>
+
+  <exec executable="${phpcb.bin}">
    <arg line="--log    ${basedir}/build/logs
               --output ${basedir}/build/code-browser" />
   </exec>
